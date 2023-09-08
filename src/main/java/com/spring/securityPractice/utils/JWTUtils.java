@@ -39,4 +39,8 @@ public class JWTUtils {
             returnValue.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
         return new String(returnValue);
     }
+
+    public static String extractUser(String token) {
+        return Jwts.parser().setSigningKey(AppConstants.TOKEN_SECRET).parseClaimsJws(token).getBody().getSubject();
+    }
 }
